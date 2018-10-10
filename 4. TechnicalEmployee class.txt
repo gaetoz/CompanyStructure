@@ -1,0 +1,28 @@
+abstract class TechnicalEmployee extends Employee {
+    //make a static defaultSalary = 75000 instead in addition to baseSalary;  ?
+    private double baseSalary = 75000;
+    private int checkIns;
+
+    public TechnicalEmployee(String name, double baseSalary, int employeeID, String manager, String employeeStatus, int checkIns) {
+        super(name, baseSalary, employeeID, manager, employeeStatus);
+        this.checkIns = 0;
+    }
+    public TechnicalEmployee(String name, double baseSalary){
+        super(name, baseSalary);
+        this.checkIns = 0;
+
+    }
+
+    public String employeeStatus(){
+        return (getEmployeeID() + getName() + " has " + checkIns + " successful check ins");
+    }
+
+    public double getBaseSalary(){
+        return this.baseSalary;
+    }
+
+    public void addCheckIn(int addNumber){
+        checkIns += addNumber;
+    }
+
+}

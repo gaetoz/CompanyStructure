@@ -1,0 +1,27 @@
+abstract class BusinessEmployee extends Employee {
+    //make a static defaultSalary = 50000 instead in addition to baseSalary;  ?
+    private double baseSalary = 50000;
+    //private double bonusBudget
+
+    public BusinessEmployee(String name, double baseSalary, int employeeID, String manager, String employeeStatus) {
+        super(name, baseSalary, employeeID, manager, employeeStatus);
+    }
+
+    public BusinessEmployee(String name, double baseSalary) {
+        super(name, baseSalary);
+    }
+
+    public double getBaseSalary(){
+        return this.baseSalary;
+    }
+
+    /*
+    Should establish a running tally of the remaining bonusBudget for the team this employee supports.
+    How that budget is determined will depend on which type of Business Employee it is
+    */
+    abstract double getBonusBudget();
+
+    public String employeeStatus(){
+        return getEmployeeID() + getName() + " with a budget of " + getBonusBudget();
+    }
+}

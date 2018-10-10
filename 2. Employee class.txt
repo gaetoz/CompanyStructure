@@ -1,0 +1,60 @@
+public abstract class Employee{
+    private String name;
+    private double baseSalary;
+    private int employeeID;    
+    private static int IDcount = 0;
+    private Employee manager;
+    private String employeeStatus;
+
+    public Employee(String name, double baseSalary, int employeeID, String manager, String employeeStatus){
+        this.name = name;
+        this.baseSalary = baseSalary;
+        IDcount++;
+        this.employeeID = IDcount;
+        //other way (C#) https://stackoverflow.com/questions/8813435/incrementing-a-unique-id-number-in-the-constructor
+        // public class Employee{
+        //        private static int m_Counter = 0;
+        //        public int Id { get; set; }
+        //        public Employee() {
+        //            this.Id = System.Threading.Interlocked.Increment(ref m_Counter);
+        //        }
+        //    }
+        //this.manager = manager;  //replacing manager by this... why? Employee object not string?
+        this.manager = this;
+        this.employeeStatus = employeeStatus;
+    }
+    public Employee(String name, double baseSalary){
+        this.name = name;
+        this.baseSalary = baseSalary;
+    }
+
+    public double getBaseSalary(){
+        return this.baseSalary;
+    }
+    public String getName(){
+        return this.name;
+    }
+
+    //return employee ID.  Should be issued on behalf of employee at the time they are constructed.
+    // The 1st employee has ID = 1, etc.
+    public int getEmployeeID(){
+        return this.employeeID;
+    }
+
+    //return a reference to the Employee object that represents this employee's manager
+    public Employee getManager(){
+        return this.manager;
+    }
+
+    //return true if the 2 employee IDs are the same, false otherwise   Review expression ****
+    public boolean equals(Employee other){
+        return (this.employeeID == other.employeeID);
+    }
+
+    public String toString(int employeeID, String name){
+        return (this.employeeID + " " + this.name);
+    }
+
+    //should be different for every subclass of employee...
+    abstract String employeeStatus();
+}
